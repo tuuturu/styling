@@ -1,7 +1,3 @@
-@import './clickable';
-@import './palette';
-@import './variables';
-
 button.btn {
   @include clickable;
 
