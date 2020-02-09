@@ -2,6 +2,7 @@
   "name": "@tuuturu/styling",
   "version": "0.0.2",
   "description": "",
+  "files": ["dist/*"],
   "scripts": {
     "build": "gulp"
   },
