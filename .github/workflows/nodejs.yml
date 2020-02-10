@@ -1,4 +1,4 @@
-name: Node.js Package
+name: Publish new package
 on:
   push:
     branches:
@@ -15,6 +15,14 @@ jobs:
         node-version: '12.x'
         registry-url: 'https://npm.pkg.github.com'
         scope: '@tuuturu' # Defaults to the user or organization that owns the workflow file
+    - name: Automated Version Bump
+      uses: phips28/gh-action-bump-version@v5.0.18
+      with:
+        # Prefix that is used for the git tag
+        tag-prefix: ''
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
     - run: npm install
     - run: npm run build
     - run: npm publish
