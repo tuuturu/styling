@@ -1,8 +1,6 @@
 name: Publish new package
 on:
-  push:
-    branches:
-      - master
+  commit_comment: '*bump*'
 
 jobs:
   build:
