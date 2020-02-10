@@ -1,18 +1,30 @@
 name: Publish new package
 on:
-  commit_comment: '*bump*'
+  push:
+    branches: 
+      - master
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - name: "Checkout source code"
+      uses: "actions/checkout@v1"
+      with:
+        ref: ${{ github.ref }}
     # Setup .npmrc file to publish to GitHub Packages
     - uses: actions/setup-node@v1
       with:
         node-version: '12.x'
         registry-url: 'https://npm.pkg.github.com'
         scope: '@tuuturu' # Defaults to the user or organization that owns the workflow file
+ 
+    - name: "Automated Version Bump"
+      uses: "phips28/gh-action-bump-version@master"
+      with:
+        tag-prefix: ''
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_PAT }}
 
     - run: npm install
     - run: npm run build
