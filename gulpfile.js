@@ -14,6 +14,7 @@ function buildStyles() {
 }
 
 function clean(cb) {
+  console.log('ignore me')
 	del(['dist/'], cb)
 }
 
