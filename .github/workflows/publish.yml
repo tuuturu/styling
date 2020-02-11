@@ -1,4 +1,4 @@
-name: Node.js Package
+name: Publish package
 on:
   push:
     branches:
@@ -8,9 +8,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    # Setup .npmrc file to publish to GitHub Packages
-    - uses: actions/setup-node@v1
+    - uses: actions/checkout@v2 # Fetch code
+    - uses: actions/setup-node@v1 # Add .npmrc for scoped package
       with:
         node-version: '12.x'
         registry-url: 'https://npm.pkg.github.com'
@@ -23,7 +22,7 @@ jobs:
       with:
         tag-prefix: ''
       env:
-        GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - run: npm publish
       env:
