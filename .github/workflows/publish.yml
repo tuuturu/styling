@@ -3,6 +3,10 @@ on:
   push:
     branches:
       - master
+    paths:
+      - '**.js'
+      - '**.scss'
+      - '**.css'
 
 jobs:
   build:
