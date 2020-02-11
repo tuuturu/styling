@@ -14,7 +14,6 @@ function buildStyles() {
 }
 
 function clean(cb) {
-  console.log('svada')
 	del(['dist/'], cb)
 }
 
