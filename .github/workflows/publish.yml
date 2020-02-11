@@ -33,3 +33,5 @@ jobs:
     - run: npm publish
       env:
         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - run: |
+        curl -XPOST -u "${{ secrets.PAT_USERNAME}}:${{secrets.GH_PAT}}" -H "Accept: application/vnd.github.everest-preview+json"  -H "Content-Type: application/json" https://api.github.com/repos/tuuturu/styling/dispatches --data '{"event_type": "build_application"}'
