@@ -40,6 +40,6 @@ jobs:
         # A repo scoped GitHub Personal Access Token
         token: ${{ secrets.VUE_NOTIFIER }}
         # The full name of the repository to send the dispatch. Defaults to the current repository.
-        repository: vue
+        repository: tuuturu/vue
         # A custom webhook event name.
         event-type: build_application
