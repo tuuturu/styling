@@ -34,11 +34,12 @@ jobs:
       env:
         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Signal Vue repo
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        EVENT: build_application
-        ORG: tuuturu
-        REPO: vue
-      run: |
-        curl -d "{\"event_type\": \"${EVENT}\"}" -H "Content-Type: application/json" -H "Authorization: token ${GITHUB_TOKEN}" -H "Accept: application/vnd.github.everest-preview+json" "https://api.github.com/repos/${ORG}/${REPO}/dispatches"
+    - name: Notify Vue
+      uses: peter-evans/repository-dispatch@v1.0.0
+      with:
+        # A repo scoped GitHub Personal Access Token
+        token: ${{ secrets.GH_PATH }}
+        # The full name of the repository to send the dispatch. Defaults to the current repository.
+        repository: vue
+        # A custom webhook event name.
+        event-type: build_application
