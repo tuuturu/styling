@@ -18,27 +18,27 @@ button.btn {
   }
 
   &.danger {
-    border-color: $danger;
+    border-color: $red;
 
     &:hover {
-      color: $background-color;
-      background-color: $danger;
+      color: $black;
+      background-color: $red;
     }
   }
 
   &.disabled {
-    color: grey;
-    background-color: lightgrey;
+    color: $black;
+    background-color: $grey-light;
 
-    border: 3px solid grey;
+    border: 3px solid $grey;
 
     cursor: not-allowed;
 
     &:hover {
-      color: grey;
-      background-color: lightgrey;
+      color: $black;
+      background-color: $grey;
 
-      border: 3px solid grey;
+      border: 3px solid $grey;
 
       cursor: not-allowed;
     }
