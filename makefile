@@ -11,7 +11,7 @@ build:
 	@echo 🚀 Finished building release
 
 publish:
-	npm publish dist/
+	npm publish --dry-run dist/
 
 clean:
 	@echo 🧹 Removing node_modules
