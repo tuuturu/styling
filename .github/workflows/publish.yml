@@ -17,6 +17,8 @@ jobs:
     - run: npm run build
 
   publish:
+    runs-on: ubuntu-latest
+    steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v1 # Add .npmrc for scoped package
       with:
@@ -38,6 +40,8 @@ jobs:
         event-type: build_application
 
   bump:
+    runs-on: ubuntu-latest
+    steps:
     - uses: actions/checkout@v1 # Fetch code
       with:
         ref: ${{ github.ref }}
