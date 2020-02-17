@@ -6,14 +6,14 @@ button.btn {
   font-weight: bold;
   font-size: large;
 
-  border: $border-width solid black;
+  border: $border-width solid $green;
 
   &.primary {
-    border-color: $primary-color;
+    border-color: $green;
 
     &:hover {
-      color: $primary-color-dark;
-      background-color: $primary-color;
+      color: $black;
+      background-color: $green;
     }
   }
 
@@ -36,7 +36,7 @@ button.btn {
 
     &:hover {
       color: $black;
-      background-color: $grey;
+      background-color: $grey-light;
 
       border: 3px solid $grey;
 
