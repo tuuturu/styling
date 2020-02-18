@@ -10,8 +10,13 @@ build:
 	@cp package.json dist/package.json
 	@echo 🚀 Finished building release
 
+dev:
+	npx webpack --watch
+
 publish:
 	npm publish dist/
+publish-locally:
+	(cd dist/ && npm link)
 
 clean:
 	@echo 🧹 Removing node_modules

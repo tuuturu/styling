@@ -1,4 +1,4 @@
-const { series, src, dest } = require('gulp')
+const { series, src, dest, watch } = require('gulp')
 const concat = require('gulp-concat')
 const del = require('delete')
 
@@ -18,6 +18,11 @@ function clean(cb) {
 	del(['dist/'], cb)
 }
 
+function dev() {
+  return watch('source/**/*.scss', buildStyles)
+}
+
 exports.build = buildStyles
 exports.clean = clean
+exports.watch = dev
 exports.default = series(clean, buildStyles)
