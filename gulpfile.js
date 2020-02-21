@@ -1,6 +1,9 @@
 const { series, src, dest, watch } = require('gulp')
 const concat = require('gulp-concat')
 const del = require('delete')
+const path = require('path')
+
+const BUILD_DIR = 'dist/'
 
 function buildStyles() {
 	return src([
@@ -10,7 +13,12 @@ function buildStyles() {
 		'source/scss/base.scss',
 	])
 		.pipe(concat('style.scss'))
-		.pipe(dest('dist/'))
+		.pipe(dest(BUILD_DIR))
+}
+
+function appendFonts() {
+  return src('source/fonts/*')
+    .pipe(dest(path.join(BUILD_DIR, 'fonts')))
 }
 
 function clean(cb) {
@@ -25,4 +33,4 @@ function dev() {
 exports.build = buildStyles
 exports.clean = clean
 exports.watch = dev
-exports.default = series(clean, buildStyles)
+exports.default = series(clean, buildStyles, appendFonts)
