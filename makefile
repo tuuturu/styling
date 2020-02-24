@@ -11,7 +11,7 @@ build:
 	@echo 🚀 Finished building release
 
 dev:
-	npx webpack --watch
+	npx gulp watch
 
 publish:
 	npm publish dist/
