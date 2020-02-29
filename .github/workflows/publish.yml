@@ -9,15 +9,31 @@ on:
       - '**.css'
 
 jobs:
+  bump:
+    name: Bumping version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1 # Fetch code
+        with:
+          ref: ${{ github.ref }}
+      - name: "Automated Version Bump"
+        uses: "phips28/gh-action-bump-version@master"
+        with:
+          tag-prefix: ''
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   build:
+    needs: bump
+    name: Running test build
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2 # Fetch code
-    - run: make install
+    - run: make ci
     - run: make build
 
   publish:
     needs: build
+    name: Publishing package to Github packages
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -25,14 +41,13 @@ jobs:
       with:
         node-version: '12.x'
         registry-url: 'https://npm.pkg.github.com'
-        #scope: '@tuuturu' # Defaults to the user or organization that owns the workflow file
-    - run: make install
+    - run: make ci
     - run: make build
     - run: make publish
       env:
         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Notify Vue
+    - name: Notify component repository
       uses: peter-evans/repository-dispatch@v1.0.0
       with:
         # A repo scoped GitHub Personal Access Token
@@ -41,17 +56,3 @@ jobs:
         repository: tuuturu/vue
         # A custom webhook event name.
         event-type: build_application
-
-  bump:
-    needs: publish
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v1 # Fetch code
-      with:
-        ref: ${{ github.ref }}
-    - name: "Automated Version Bump"
-      uses: "phips28/gh-action-bump-version@master"
-      with:
-        tag-prefix: ''
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
