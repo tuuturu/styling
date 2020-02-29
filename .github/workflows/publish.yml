@@ -25,7 +25,7 @@ jobs:
       with:
         node-version: '12.x'
         registry-url: 'https://npm.pkg.github.com'
-        scope: '@tuuturu' # Defaults to the user or organization that owns the workflow file
+        #scope: '@tuuturu' # Defaults to the user or organization that owns the workflow file
     - run: make install
     - run: make build
     - run: make publish
