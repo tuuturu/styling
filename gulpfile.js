@@ -14,7 +14,6 @@ function buildStyles() {
 }
 
 function clean(cb) {
-  // remove this
 	del(['dist/'], cb)
 }
 

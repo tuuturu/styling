@@ -10,6 +10,13 @@ build:
 	@cp package.json dist/package.json
 	@echo 🚀 Finished building release
 
+ci:
+	@echo 📦 Building package
+	@npm run ci
+	@echo 📃 Adding meta data
+	@cp package.json dist/package.json
+	@echo 🚀 Finished building release
+
 publish:
 	npm publish dist/
 
