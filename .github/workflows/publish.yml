@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2 # Fetch code
-    - run: make ci
+    - run: npm ci
     - run: make build
 
   publish:
@@ -41,7 +41,7 @@ jobs:
       with:
         node-version: '12.x'
         registry-url: 'https://npm.pkg.github.com'
-    - run: make ci
+    - run: npm ci
     - run: make build
     - run: make publish
       env:
