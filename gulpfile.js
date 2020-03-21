@@ -5,6 +5,7 @@ const del = require('delete')
 function buildStyles() {
 	return src([
 		'source/scss/variables.scss',
+		'source/scss/theme.scss',
 		'source/scss/palette.scss',
 		'source/scss/mixins.scss',
 		'source/scss/base.scss',
